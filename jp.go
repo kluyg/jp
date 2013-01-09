@@ -20,7 +20,9 @@ func main() {
 	pretty, err := json.MarshalIndent(f, "", "  ")
 	exitOnErr(err, "Error while encoding back to pretty json")
 	_, err = w.Write(pretty)
-	exitOnErr(err, "Error while writing to Stdout")
+	exitOnErr(err, "Error while writing pretty json to Stdout")
+	err = w.WriteByte('\n')
+	exitOnErr(err, "Error while writing newline char to Stdout")
 }
 
 func exitOnErr(err error, message string) {
